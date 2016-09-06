@@ -3,12 +3,13 @@ import intent_recognizer as iz
 
 class BotBuilder:
 
-    def __init__(self):
+    def __init__(self, user_id):
         self.session = {'path':['']}
         self.dict_intent_recognizer = {}
         self.dict_respond = {}
         self.dict_path = {}
         self.count = 0
+        self.user_id = user_id
 
     def add_responds(self, intent, responds):
         self.dict_respond[intent] = list(responds)

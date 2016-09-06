@@ -65,3 +65,12 @@ class NameEntitiesIntentRecognizer(IntentRecognizer):
         #values = self.entities_recognizer.get_value(input_string)
         values = [input_string]
         return {'name' : values[0]}
+
+
+class BotIntentRecognizer(IntentRecognizer):
+
+    def __init__(self):
+        return
+
+    def get_score(self, input_string, session):
+        return 1

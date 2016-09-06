@@ -1,4 +1,9 @@
 import re
+from nltk.tag.stanford import StanfordNERTagger
+
+# st = StanfordNERTagger('E:\english.all.3class.nodistsim.crf.ser.gz',
+# 'E:\stanford-corenlp\stanford-english-corenlp-2016-01-10-models.jar')
+# st.tag('Rami Eid is studying at Stony Brook University in NY'.split())
 
 
 class EntitiesRecognizer:
