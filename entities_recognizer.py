@@ -3,7 +3,9 @@ import re
 
 class EntitiesRecognizer:
     entities_with_value = {'yes no': {'yes': 1, 'absolutely': 1, 'not sure': 0.5,
-                                      'maybe': 0.5, 'no': 0, 'definitely not': 0}}
+                                      'maybe': 0.5, 'no': 0, 'definitely not': 0},
+                           'day_of_week': {'monday': 1, 'tuesday': 2, 'wednesday': 3, 'thursday': 4, 'friday': 5,
+                                           'saturday': 6, 'sunday': 7}}
 
     @staticmethod
     def get_value(self, string):

@@ -7,7 +7,7 @@ class IntentRecognizer:
         self.re_string = re_string
         self.intent = intent
 
-    def get_score(self, input_string):
+    def get_score(self, input_string, session):
         pattern = re.compile(self.re_string)
         m = pattern.match(input_string)
         if m:
@@ -32,7 +32,7 @@ class OneEntitiesIntentRecognizer(IntentRecognizer):
         self.variables_intent = {}
         self.intent = intent
 
-    def get_score(self, input_string):
+    def get_score(self, input_string, session):
         string_entities = ''
         for key, value in self.dict_entities:
             string_entities += '|'+key
@@ -54,7 +54,7 @@ class NameEntitiesIntentRecognizer(IntentRecognizer):
         self.variables_intent = {}
         self.intent = intent
 
-    def get_score(self, input_string):
+    def get_score(self, input_string, session):
         # values =  self.entities_recognizer.get_value(input_string)
         # print(values)
         # if len(values) == 1:
