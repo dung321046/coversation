@@ -25,6 +25,7 @@ class IntentRecognizer:
     def get_variables(self, input_string):
         return {}
 
+
 class OneEntitiesIntentRecognizer(IntentRecognizer):
 
     def __init__(self, dict_entities, intent):
@@ -59,17 +60,18 @@ class NameEntitiesIntentRecognizer(IntentRecognizer):
         # print(values)
         # if len(values) == 1:
         return 1
-        #return 0
+        # return 0
 
     def get_variables(self, input_string):
-        #values = self.entities_recognizer.get_value(input_string)
+        # values = self.entities_recognizer.get_value(input_string)
         values = [input_string]
-        return {'name' : values[0]}
+        return {'name': values[0]}
 
 
 class BotIntentRecognizer(IntentRecognizer):
 
     def __init__(self):
+        self.intent = 'bot intent'
         return
 
     def get_score(self, input_string, session):

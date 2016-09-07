@@ -1,6 +1,6 @@
 class Responder:
 
-    def __init__(self, respond_sentence, info, is_continue, is_go_back, new_intent = ''):
+    def __init__(self, respond_sentence, info, is_continue, is_go_back, new_intent=''):
         self.respond_sentence = respond_sentence
         self.info = info
         self.is_continue = is_continue
@@ -40,12 +40,8 @@ class Responder:
 class QuestionRespond(Responder):
 
     def __init__(self, respond_sentence, info, attribute_name):
-        self.respond_sentence = respond_sentence
-        self.info = info
+        Responder.__init__(self, respond_sentence, info, True, False, 'gettingPronoun')
         self.attribute_name = attribute_name
-        self.is_continue = True
-        self.is_go_back = False
-        self.new_intent = 'gettingPronoun'
         return
 
     def get_respond(self, session):
@@ -56,7 +52,8 @@ class QuestionRespond(Responder):
         session['attribute_type'] = [self.attribute_name]
         return True
 
-    def is_continue(self):
+    @staticmethod
+    def is_continue():
         return True
 
 
@@ -94,4 +91,3 @@ class ConfirmationRespond(Responder):
         print(session)
         # session['path'].append('confirmation')
         return True
-

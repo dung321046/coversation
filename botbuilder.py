@@ -4,7 +4,7 @@ import intent_recognizer as iz
 class BotBuilder:
 
     def __init__(self, user_id):
-        self.session = {'path':['']}
+        self.session = {'path': ['']}
         self.dict_intent_recognizer = {}
         self.dict_respond = {}
         self.dict_path = {}
@@ -36,8 +36,8 @@ class BotBuilder:
             for ir in list_ir:
                 if ir.get_score(string_input, self.session) > 0.5:
                     self.session['variables_intent'] = ir.get_variables(string_input)
-                    if (not ir.intent in self.dict_respond):
-                        print('Can not find respond according to '+ ir.intent)
+                    if ir.intent not in self.dict_respond:
+                        print('Can not find respond according to ' + ir.intent)
                         continue
                     self.session['path'].append(ir.intent)
                     self.get_respond(self.dict_respond[ir.intent])
@@ -60,12 +60,26 @@ class BotBuilder:
                 self.print_dialog(new_path, tab_string + '      ')
         return
 
-    def print_dialog(self, path, tab_string = ''):
+    def print_dialog(self, path, tab_string=''):
         for intent_recognizer in self.dict_intent_recognizer[path[-1]]:
             path.append(intent_recognizer.intent)
-            print(tab_string +"<>" + path[-1] + "<>")
+            print(tab_string + "<>" + path[-1] + "<>")
             self.print_respond(path, tab_string+'   ')
             del path[-1]
         return
 
 
+class SchedulingBotBuilder(BotBuilder):
+
+    def __init__(self, user_id):
+        """
+        :param user_id:
+         add calendar with structure = list of event
+         { 'event_name': 'meeting with alan', 'date_start': 27/09/2016 'date_end': 12/21/2016
+          'time_start': 12:00, 'time_end': 14:00}
+        """
+        BotBuilder.__init__(self, user_id)
+        self.calendar = []
+
+    def add_event(self, event):
+        self.calendar.append(event)

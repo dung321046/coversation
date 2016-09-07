@@ -2,6 +2,8 @@ import botbuilder as bb
 import intent_recognizer as ir
 import entities_recognizer as er
 import respond as rp
+import sys, os
+import mysql.connector
 
 
 class ChatBotCenter:
@@ -30,6 +32,8 @@ class ChatBotCenter:
                          'company_question_respond': company_question_respond}
 
         self.bots = {}
+        self.user_id = []
+        self.cnx = mysql.connector.connect(host='localhost',database='mysql',user='root',password='')
 
     def get_intent(self, intent_name):
         return self.intent_recognizers[intent_name]
@@ -52,13 +56,14 @@ class ChatBotCenter:
             bot.add_responds('greeting', [self.get_respond('hello_respond')])
             bot.add_responds('idk', [self.get_respond('idk_respond')])
             self.bots[user_id] = bot
+            self.user_id.append(user_id)
+        else:
+            print(r"We don't have any chat bot for " + role)
 
-    def send_message(self, user_id, msg):
+    def send_message(self, interview_id, role, msg):
         '''
         :param user_id:
         :param msg:
         :return:
         '''
-        print('To:' + user_id + ' Message:'+msg)
         return
-

@@ -15,6 +15,7 @@ class EntitiesRecognizer:
     @staticmethod
     def get_value(self, string):
         return
+
     '''
     def get_value_of_single_entity(self, string, type):
         dict_value = {}
