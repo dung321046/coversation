@@ -33,7 +33,7 @@ class ChatBotCenter:
 
         self.bots = {}
         self.user_id = []
-        self.cnx = mysql.connector.connect(host='localhost',database='mysql',user='root',password='')
+        # self.cnx = mysql.connector.connect(host='localhost',database='mysql',user='root',password='')
 
     def get_intent(self, intent_name):
         return self.intent_recognizers[intent_name]
